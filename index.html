@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>🎇 Happy Diwali 🎇</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #ffecd2, #fcb69f);
+  animation: gradientBG 10s ease infinite alternate;
+  position: relative;
+  cursor: pointer;
+  opacity: 1;
+}
+
+@keyframes gradientBG {
+  0% { background-color: #ffecd2; }
+  50% { background-color: #ffe3f3; }
+  100% { background-color: #d4fc79; }
+}
+
+.bg-image {
+  position: absolute;
+  inset: 0;
+  background: url('background.png') center/cover no-repeat;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 1.5s ease;
+}
+
+.message-box, .diya, .rocket, .spark, .flame {
+  position: absolute;
+  z-index: 1;
+}
+
+/* Message Box */
+.message-box {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(14px);
+  padding: 50px 40px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 0 20px rgba(255,255,255,0.3);
+  border: 3px dashed #ff2e63;
+  z-index: 10;
+  opacity: 0;
+  animation: fadeInBox 1s forwards 1s;
+  transform: scale(0.5);
+  transition: opacity 0.5s ease;
+}
+
+@keyframes fadeInBox {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.message-box h1 {
+  font-size: 30px;
+  color: #ff2e63;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px #ff2e63, 0 0 40px #ff2e63;
+  animation: glowText 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowText {
+  0% { text-shadow: 0 0 15px #ff2e63, 0 0 30px #ff2e63; }
+  100% { text-shadow: 0 0 30px #ff2e63, 0 0 70px #ff85a1; }
+}
+
+.subtext {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ff6b81;
+  margin-bottom: 10px;
+  text-shadow: 0 0 8px #ff6b81, 0 0 15px #ff6b81;
+}
+
+.text {
+  font-size: 13px;
+  font-weight: 550;
+  margin-bottom: 10px;
+  text-shadow: 0 0 8px #ffce1b, 0 0 15px #ff6b81;
+}
+
+/* Rocket */
+.rocket {
+  bottom: -120px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes flyJump {
+  0% { transform: translateY(0) scale(1); }
+  20% { transform: translateY(-20vh) scale(1.05); }
+  40% { transform: translateY(-35vh) scale(0.95); }
+  60% { transform: translateY(-45vh) scale(1.05); }
+  80% { transform: translateY(-55vh) scale(1); }
+  100% { transform: translateY(-60vh) scale(1); }
+}
+
+/* Sparks */
+.spark {
+  width: 120px;
+  height: 120px;
+  opacity: 0;
+  z-index: 5;
+  pointer-events: none;
+  animation: explode 0.6s ease-out forwards;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@keyframes explode {
+  0% { transform: scale(0.5); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* Diya */
+.diya {
+  width: 90px;
+  height: 90px;
+  background: url('diya.png') no-repeat center/contain;
+  bottom: 18%;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.5s ease;
+  z-index: 9;
+}
+
+.diya.left { left: 15%; }
+.diya.right { right: 15%; }
+
+/* Flame & sparkUp inside diya */
+.diya .flame {
+  position: absolute;
+  bottom: 90%;
+  left: 50%;
+  width: 8px;
+  height: 430px;
+  background: radial-gradient(circle, yellow 20%, orange 60%, transparent 80%);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: flameUp 0.5s infinite alternate;
+  transform: translateX(-50%) scale(0.2);
+  transition: opacity 0.2s ease;
+}
+
+@keyframes flameUp {
+  0% { transform: translateX(-50%) scaleY(1); opacity: 0.8; }
+  100% { transform: translateX(-50%) scaleY(1.4); opacity: 1; }
+}
+
+.diya .sparkUp {
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  width: 4px;
+  height: 10px;
+  background: yellow;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkUpAnim 1s linear infinite;
+  transform: translateX(-50%);
+}
+
+@keyframes sparkUpAnim {
+  0% { transform: translate(-50%, 0); opacity: 1; }
+  100% { transform: translate(-50%, -80px); opacity: 0; }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .message-box { padding: 25px 20px; border-radius: 20px; }
+  .message-box h1 { font-size: 22px; }
+  .subtext { font-size: 12px; }
+  .text { font-size: 10px; }
+  
+  /* Raised diays for mobile */
+  .diya { width: 60px; height: 60px; bottom: 28%; }
+  .diya.left { left: 10%; }
+  .diya.right { right: 10%; }
+  
+  .diya .flame { height: 360px; bottom: 80%; }
+  .diya .sparkUp { bottom: 75%; }
+
+  .spark { width: 70px; height: 70px; }
+  .rocket { width: 40px !important; }
+}
+</style>
+</head>
+<body>
+<div class="bg-image"></div>
+
+<div class="message-box">
+  <h1>🎇 Happy Diwali To All My Dear Friends! 🎇</h1>
+  <p class="subtext">🎉 Wishing you joy, light, and endless celebrations! 🎉</p>
+  <p class="text">✨🎇 "May the ✨light✨ of Diwali fill your ❤️heart❤️ with joy, your 🏠home🏠 with warmth, and your life with endless happiness!
+Wishing you lots of 💖love💖, 😄laughter😄, and sparkling ✨moments✨ this festive season.
+Let this festival of lights bring new 🌟hopes🌟, 🕊peace🕊, and 🌈success🌈 into your life.
+Shine bright & Happy Diwali! 🪔🎉" 🎆✨</p>
+</div>
+
+<div class="diya left">
+  <div class="flame"></div>
+  <div class="sparkUp"></div>
+</div>
+
+<div class="diya right">
+  <div class="flame"></div>
+  <div class="sparkUp"></div>
+</div>
+
+<script>
+const rocketImages = ["firecracker1.png","firecracker2.png","firecracker3.png","firecracker4.png"];
+const sparkImages = ["spark1.png","spark2.png","spark3.png","spark4.png"];
+
+function createRocket() {
+  const r = document.createElement("img");
+  r.src = rocketImages[Math.floor(Math.random()*rocketImages.length)];
+  r.className = "rocket";
+  const size = 60 + Math.random()*40;
+  r.style.width = size + "px";
+  r.style.left = Math.random()*90 + "vw";
+  const duration = 3 + Math.random()*1.5;
+  r.style.animation = `flyJump ${duration}s ease-out forwards`;
+  document.body.appendChild(r);
+  setTimeout(() => { createSpark(r); r.remove(); }, duration*1000);
+}
+
+function createSpark(rocket) {
+  const s = document.createElement("div");
+  s.className = "spark";
+  const randomSpark = sparkImages[Math.floor(Math.random()*sparkImages.length)];
+  s.style.backgroundImage = `url('${randomSpark}')`;
+  s.style.left = rocket.style.left;
+  s.style.bottom = "50vh";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),800);
+}
+
+function startShow() { setInterval(createRocket,700); }
+
+function initialBurst(callback){
+  const numSparks=15;
+  for(let i=0;i<numSparks;i++){
+    const s=document.createElement("div");
+    s.className="spark";
+    const randomSpark = sparkImages[Math.floor(Math.random()*sparkImages.length)];
+    s.style.backgroundImage=`url('${randomSpark}')`;
+    s.style.left=Math.random()*90+"vw";
+    s.style.bottom="-20px";
+    s.style.transform="scale(0.5)";
+    s.style.opacity=1;
+    document.body.appendChild(s);
+    const duration=0.8+Math.random()*0.4;
+    const peakHeight=50+Math.random()*30;
+    setTimeout(()=> {
+      s.style.transition=`transform ${duration}s ease-out,bottom ${duration}s ease-out,opacity ${duration}s ease-out`;
+      s.style.bottom=peakHeight+"vh";
+      s.style.transform="scale(1.8)";
+      s.style.opacity=0;
+    },50);
+    setTimeout(()=>s.remove(),(duration+0.1)*1000);
+  }
+  setTimeout(callback,1200);
+}
+
+window.onload = () => {
+  initialBurst(()=> {
+    setTimeout(()=>{document.querySelector('.bg-image').style.opacity=0.7;},500);
+    const elements=[
+      document.querySelector('.message-box'),
+      document.querySelector('.diya.left'),
+      document.querySelector('.diya.right')
+    ];
+    elements.forEach(el=>{el.style.opacity=1; el.style.transform='scale(0.8)';});
+    startShow();
+  });
+};
+</script>
+</body>
+</html>
